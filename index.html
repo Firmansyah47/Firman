@@ -139,5 +139,50 @@
         <div id="typing"></div>
     </
     </script>
+                const particlesDiv = document.getElementById('particles');
+        for(let i = 0; i < 30; i++) {
+            const p = document.createElement('div');
+            p.className = 'particle';
+            const size = Math.random() * 4 + 2;
+            p.style.width = size + 'px';
+            p.style.height = size + 'px';
+            p.style.left = Math.random() * 100 + '%';
+            p.style.animationDelay = Math.random() * 6 + 's';
+            p.style.animationDuration = Math.random() * 3 + 4 + 's';
+            particlesDiv.appendChild(p);
+        }
+
+        document.getElementById('openBtn').addEventListener('click', () => {
+            document.getElementById('welcome').classList.add('hide');
+            setTimeout(() => {
+                document.getElementById('welcome').style.display = 'none';
+                document.getElementById('content').classList.add('show');
+                setTimeout(typeWriter, 400);
+            }, 1000);
+        });
+
+        const text = `Aku gak jago ngerangkai kata.\n\nTapi aku tau satu hal:\nAku sayang sama kamu.\n\nMaaf kalo aku sering nyebelin.\nMaaf kalo aku banyak kurangnya.\n\nTapi kalo dikasih kesempatan,\naku mau buktiin kalo aku bisa jadi lebih baik.\n\nBuat kamu. Cuma kamu.\n\n<span class="heart">❤</span>`;
+        
+        let i = 0;
+        const typingDiv = document.getElementById('typing');
+        
+        function typeWriter() {
+            if (i < text.length) {
+                if (text.charAt(i) === '<') {
+                    let tag = '';
+                    while (text.charAt(i) !== '>') tag += text.charAt(i++);
+                    tag += '>';
+                    typingDiv.innerHTML += tag;
+                    i++;
+                } else if (text.charAt(i) === '\n') {
+                    typingDiv.innerHTML += '<br>';
+                    i++;
+                } else {
+                    typingDiv.innerHTML += text.charAt(i);
+                    i++;
+                }
+                setTimeout(typeWriter, 45);
+            }
+        }
 </body>
 </html>
