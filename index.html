@@ -1,4 +1,51 @@
-<!DOCTYPE html>
+
+        // Teks yang mau diketik
+        const text = `Hai Nindy...\n\nAku bikin ini khusus buat kamu.\n\nMaafin aku kalo selama ini banyak salah ya.\nAku janji bakal jadi yang lebih baik buat kamu.\n\nKamu itu spesial banget buat aku.\nJangan pernah bosen sama aku ya sayang.\n\nI love you <span class="heart">❤️</span>`;
+        
+        let i = 0;
+        const typingDiv = document.getElementById('typing-text');
+        
+        function typeWriter() {
+            if (i < text.length) {
+                if (text.charAt(i) === '<') {
+                    let tag = '';
+                    while (text.charAt(i) !== '>') {
+                        tag += text.charAt(i);
+                        i++;
+                    }
+                    tag += '>';
+                    typingDiv.innerHTML += tag;
+                    i++;
+                } else if (text.charAt(i) === '\n') {
+                    typingDiv.innerHTML += '<br>';
+                    i++;
+                } else {
+                    typingDiv.innerHTML += text.charAt(i);
+                    i++;
+                }
+                setTimeout(typeWriter, 50);
+            }
+        }
+        
+        // Mulai ngetik setelah 1 detik
+        setTimeout(typeWriter, 1000);
+        
+        // Tombol musik
+        const playBtn = document.getElementById('playBtn');
+        const bgMusic = document.getElementById('bgMusic');
+        
+        playBtn.addEventListener('click', () => {
+            if (bgMusic.paused) {
+                bgMusic.play();
+                playBtn.textContent = 'Pause Musik ⏸️';
+            } else {
+                bgMusic.pause();
+                playBtn.textContent = 'Putar Musik 🎵';
+            }
+        });
+    </script>
+</body>
+                </html><!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
@@ -123,3 +170,51 @@
             star.style.animationDelay = Math.random() * 3 + 's';
             starsContainer.appendChild(star);
         }
+     
+        // Teks yang mau diketik
+        const text = `Hai Nindy...\n\nAku bikin ini khusus buat kamu.\n\nMaafin aku kalo selama ini banyak salah ya.\nAku janji bakal jadi yang lebih baik buat kamu.\n\nKamu itu spesial banget buat aku.\nJangan pernah bosen sama aku ya sayang.\n\nI love you <span class="heart">❤️</span>`;
+        
+        let i = 0;
+        const typingDiv = document.getElementById('typing-text');
+        
+        function typeWriter() {
+            if (i < text.length) {
+                if (text.charAt(i) === '<') {
+                    let tag = '';
+                    while (text.charAt(i) !== '>') {
+                        tag += text.charAt(i);
+                        i++;
+                    }
+                    tag += '>';
+                    typingDiv.innerHTML += tag;
+                    i++;
+                } else if (text.charAt(i) === '\n') {
+                    typingDiv.innerHTML += '<br>';
+                    i++;
+                } else {
+                    typingDiv.innerHTML += text.charAt(i);
+                    i++;
+                }
+                setTimeout(typeWriter, 50);
+            }
+        }
+        
+        // Mulai ngetik setelah 1 detik
+        setTimeout(typeWriter, 1000);
+        
+        // Tombol musik
+        const playBtn = document.getElementById('playBtn');
+        const bgMusic = document.getElementById('bgMusic');
+        
+        playBtn.addEventListener('click', () => {
+            if (bgMusic.paused) {
+                bgMusic.play();
+                playBtn.textContent = 'Pause Musik ⏸️';
+            } else {
+                bgMusic.pause();
+                playBtn.textContent = 'Putar Musik 🎵';
+            }
+        });
+    </script>
+</body>
+</html>
