@@ -1,64 +1,17 @@
-
-        // Teks yang mau diketik
-        const text = `Hai Nindy...\n\nAku bikin ini khusus buat kamu.\n\nMaafin aku kalo selama ini banyak salah ya.\nAku janji bakal jadi yang lebih baik buat kamu.\n\nKamu itu spesial banget buat aku.\nJangan pernah bosen sama aku ya sayang.\n\nI love you <span class="heart">❤️</span>`;
-        
-        let i = 0;
-        const typingDiv = document.getElementById('typing-text');
-        
-        function typeWriter() {
-            if (i < text.length) {
-                if (text.charAt(i) === '<') {
-                    let tag = '';
-                    while (text.charAt(i) !== '>') {
-                        tag += text.charAt(i);
-                        i++;
-                    }
-                    tag += '>';
-                    typingDiv.innerHTML += tag;
-                    i++;
-                } else if (text.charAt(i) === '\n') {
-                    typingDiv.innerHTML += '<br>';
-                    i++;
-                } else {
-                    typingDiv.innerHTML += text.charAt(i);
-                    i++;
-                }
-                setTimeout(typeWriter, 50);
-            }
-        }
-        
-        // Mulai ngetik setelah 1 detik
-        setTimeout(typeWriter, 1000);
-        
-        // Tombol musik
-        const playBtn = document.getElementById('playBtn');
-        const bgMusic = document.getElementById('bgMusic');
-        
-        playBtn.addEventListener('click', () => {
-            if (bgMusic.paused) {
-                bgMusic.play();
-                playBtn.textContent = 'Pause Musik ⏸️';
-            } else {
-                bgMusic.pause();
-                playBtn.textContent = 'Putar Musik 🎵';
-            }
-        });
-    </script>
-</body>
-                </html><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Untuk Nindy Sayang 💖</title>
+    <title>Untuk Nindy</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Dancing+Script:wght@700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&family=Dancing+Script:wght@700&display=swap');
         
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body {
             font-family: 'Poppins', sans-serif;
-            background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+            background: #0a0a0f;
             color: #fff;
             overflow: hidden;
             height: 100vh;
@@ -67,154 +20,121 @@
             align-items: center;
         }
         
-        .stars {
+        /* PARTIKEL BACKGROUND */
+        .particles {
             position: fixed;
             top: 0; left: 0;
             width: 100%; height: 100%;
             pointer-events: none;
+            z-index: 1;
         }
         
-        .star {
+        .particle {
             position: absolute;
-            background: white;
+            background: #ff6b9d;
             border-radius: 50%;
-            animation: twinkle 3s infinite;
+            opacity: 0;
+            animation: float 6s infinite;
         }
         
-        @keyframes twinkle {
-            0%, 100% { opacity: 0.3; }
-            50% { opacity: 1; }
+        @keyframes float {
+            0% { transform: translateY(100vh) scale(0); opacity: 0; }
+            50% { opacity: 0.6; }
+            100% { transform: translateY(-10vh) scale(1); opacity: 0; }
         }
-        
-        .container {
+
+        /* LAYAR 1: SAMBUTAN */
+        #welcome {
             text-align: center;
-            padding: 30px;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
-            max-width: 90%;
             z-index: 10;
+            transition: all 1s ease;
         }
         
-        h1 {
+        #welcome.hide {
+            opacity: 0;
+            transform: scale(0.9);
+            pointer-events: none;
+        }
+        
+        #welcome h1 {
             font-family: 'Dancing Script', cursive;
-            font-size: 3rem;
+            font-size: 2.8rem;
             color: #ff6b9d;
-            margin-bottom: 20px;
-            text-shadow: 0 0 20px rgba(255, 107, 157, 0.5);
+            margin-bottom: 30px;
         }
         
-        #typing-text {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            min-height: 200px;
-            color: #e0e0e0;
-        }
-        
-        .heart {
-            color: #ff6b9d;
-            display: inline-block;
-            animation: heartbeat 1.5s infinite;
-        }
-        
-        @keyframes heartbeat {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.2); }
-        }
-        
-        #playBtn {
-            margin-top: 25px;
-            padding: 12px 30px;
+        #openBtn {
+            padding: 14px 35px;
             font-size: 1rem;
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(45deg, #ff6b9d, #c44569);
-            color: white;
-            border: none;
+            background: transparent;
+            color: #ff6b9d;
+            border: 2px solid #ff6b9d;
             border-radius: 50px;
             cursor: pointer;
-            box-shadow: 0 4px 15px rgba(255, 107, 157, 0.4);
             transition: all 0.3s;
         }
         
-        #playBtn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(255, 107, 157, 0.6);
+        #openBtn:hover {
+            background: #ff6b9d;
+            color: #0a0
+                        }
+        
+        /* LAYAR 2: ISI */
+        #content {
+            display: none;
+            text-align: center;
+            max-width: 85%;
+            z-index: 10;
+            opacity: 0;
+            transition: all 1s ease;
+        }
+        
+        #content.show {
+            display: block;
+            opacity: 1;
+        }
+        
+        #content h2 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            color: #ff6b9d;
+            margin-bottom: 25px;
+        }
+        
+        #typing {
+            font-size: 1.05rem;
+            line-height: 1.9;
+            color: #d4d4d4;
+            text-align: left;
+            font-weight: 300;
+        }
+        
+        .heart {
+            color: #ff6b9d
+                        .heart {
+            color: #ff6b9d;
+            display: inline-block;
+            animation: pulse 1.5s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.15); }
         }
     </style>
 </head>
 <body>
-    <div class="stars" id="stars"></div>
+    <div class="particles" id="particles"></div>
     
-    <div class="container">
-        <h1>Nindy Sayang <span class="heart">❤️</span></h1>
-        <div id="typing-text"></div>
-        <button id="playBtn">Putar Musik 🎵</button>
+    <!-- LAYAR SAMBUTAN -->
+    <div id="welcome">
+        <h1>Hai, Nindy</h1>
+        <button id="openBtn">Buka Pesan</button>
     </div>
 
-    <audio id="bgMusic" loop>
-        <source src="https://files.catbox.moe/8zq5h2.mp3" type="audio/mpeg">
-    </audio>
-
-    <script>
-        // Bikin bintang-bintang
-        const starsContainer = document.getElementById('stars');
-        for(let i = 0; i < 100; i++) {
-            const star = document.createElement('div');
-            star.className = 'star';
-            star.style.width = Math.random() * 3 + 'px';
-            star.style.height = star.style.width;
-            star.style.left = Math.random() * 100 + '%';
-            star.style.top = Math.random() * 100 + '%';
-            star.style.animationDelay = Math.random() * 3 + 's';
-            starsContainer.appendChild(star);
-        }
-     
-        // Teks yang mau diketik
-        const text = `Hai Nindy...\n\nAku bikin ini khusus buat kamu.\n\nMaafin aku kalo selama ini banyak salah ya.\nAku janji bakal jadi yang lebih baik buat kamu.\n\nKamu itu spesial banget buat aku.\nJangan pernah bosen sama aku ya sayang.\n\nI love you <span class="heart">❤️</span>`;
-        
-        let i = 0;
-        const typingDiv = document.getElementById('typing-text');
-        
-        function typeWriter() {
-            if (i < text.length) {
-                if (text.charAt(i) === '<') {
-                    let tag = '';
-                    while (text.charAt(i) !== '>') {
-                        tag += text.charAt(i);
-                        i++;
-                    }
-                    tag += '>';
-                    typingDiv.innerHTML += tag;
-                    i++;
-                } else if (text.charAt(i) === '\n') {
-                    typingDiv.innerHTML += '<br>';
-                    i++;
-                } else {
-                    typingDiv.innerHTML += text.charAt(i);
-                    i++;
-                }
-                setTimeout(typeWriter, 50);
-            }
-        }
-        
-        // Mulai ngetik setelah 1 detik
-        setTimeout(typeWriter, 1000);
-        
-        // Tombol musik
-        const playBtn = document.getElementById('playBtn');
-        const bgMusic = document.getElementById('bgMusic');
-        
-        playBtn.addEventListener('click', () => {
-            if (bgMusic.paused) {
-                bgMusic.play();
-                playBtn.textContent = 'Pause Musik ⏸️';
-            } else {
-                bgMusic.pause();
-                playBtn.textContent = 'Putar Musik 🎵';
-            }
-        });
-    </script>
-</body>
-</html>
+    <!-- LAYAR ISI -->
+    <div id="content">
+        <h2>Buat Kamu <span class="heart">❤</span></h2>
+        <div id="typing"></div>
+    </
