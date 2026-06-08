@@ -63,7 +63,7 @@ button{
     <h1>Kamu suka aku ga? ❤️</h1>
 
     <button id="yes">Iya Suka❤️</button>
-    <button id="no">Ga Suka 😜</button>
+    <button id="no">MALAS 🧢</button>
 </div>
 
 <script>
@@ -87,9 +87,10 @@ document.getElementById("yes").addEventListener("click", () => {
         "Iyaa aku suka banget sama kamu, kamu mau ga jadi pacar aku💕❤✨"
     );
 
-    window.location.href =
-    `https://wa.me/${nomor}?text=${pesan}`;
-});
+    window.open(
+`https://api.whatsapp.com/send?phone=${nomor}&text=${pesan}`,
+'_blank'
+);
 </script>
 
 </body>
