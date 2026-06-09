@@ -1,65 +1,93 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pengumuman Penting Kelas</title>
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{background:#000;color:#fff;font-family:Arial,sans-serif;height:100vh;overflow:hidden;cursor:none}
-.loading{position:fixed;top:0;left:0;width:100%;height:100%;display:flex;justify-content:center;align-items:center;flex-direction:column;z-index:10;background:#000}
-.loading h1{font-size:24px;margin-bottom:20px;animation:pulse 1.5s infinite}
-.loading p{color:#888}
-@keyframes pulse{0%{opacity:0.3}50%{opacity:1}100%{opacity:0.3}}
-.jumpscare{position:fixed;top:0;left:0;width:100%;height:100%;display:none;justify-content:center;align-items:center;z-index:20}
-.jumpscare img{width:100%;height:100%;object-fit:cover;animation:shake 0.1s infinite}
-@keyframes shake{0%{transform:translate(5px,5px)}25%{transform:translate(-5px,-5px)}50%{transform:translate(5px,-5px)}75%{transform:translate(-5px,5px)}100%{transform:translate(5px,5px)}}
-.tombol-keluar{position:fixed;bottom:20px;right:20px;z-index:30;background:rgba(255,255,255,0.1);color:#fff;border:1px solid #fff;padding:10px 20px;border-radius:5px;display:none;cursor:pointer}
-</style>
+  <meta charset="UTF-8">
+  <title>MBG BUAT KAMU😁</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: Arial, sans-serif;
+    }
+
+    .box {
+      width: 200px;
+      height: 200px;
+      background: #ff4d6d;
+      border-radius: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      transition: 0.3s;
+    }
+
+    .box:hover {
+      transform: scale(1.05);
+    }
+
+    .box h2 {
+      color: white;
+      text-align: center;
+    }
+
+    .gift {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.8);
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      color: white;
+    }
+
+    .gift img {
+      width: 250px;
+      border-radius: 15px;
+      margin-bottom: 15px;
+    }
+
+    .gift button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      background: #ff4d6d;
+      color: white;
+    }
+  </style>
 </head>
 <body>
-<div class="loading" id="loading">
-<h1>⚠️ PERINGATAN</h1>
-<p>Konten ini mengandung gambar sensitif...</p>
-<p>Mohon tunggu sebentar...</p>
-</div>
 
-<div class="jumpscare" id="jumpscare">
-<img src="https://i.ibb.co/8DqjPzH/hantu-serem.jpg" alt="BOO">
-</div>
+  <div class="box" onclick="openGift()">
+    <h2>Klik Hadiah 🎁</h2>
+  </div>
 
-<button class="tombol-keluar" id="keluar" onclick="window.close()">TUTUP</button>
+  <div class="gift" id="gift">
+    <img src="https://i.pinimg.com/originals/7b/3d/2c/7b3d2c1a0f3b8c3a9c7d8e1f1d6f0a2b.jpg" alt="foto">
+    <h2>Ini hadiah buat kamu 💖</h2>
+    <p>Semoga kamu suka ya 🤭</p>
+    <button onclick="closeGift()">Tutup</button>
+  </div>
 
-<audio id="teriak" preload="auto">
-<source src="https://www.myinstants.com/media/sounds/female-scream-1.mp3" type="audio/mpeg">
-</audio>
-
-<script>
-const loading = document.getElementById('loading');
-const jumpscare = document.getElementById('jumpscare');
-const teriak = document.getElementById('teriak');
-const keluar = document.getElementById('keluar');
-
-setTimeout(() => {
-    loading.style.display = 'none';
-    jumpscare.style.display = 'flex';
-    teriak.volume = 1.0;
-    teriak.play().catch(e => {});
-    
-    if (navigator.vibrate) {
-        navigator.vibrate([500, 200, 500, 200, 1000]);
+  <script>
+    function openGift() {
+      document.getElementById("gift").style.display = "flex";
     }
-    
-    setTimeout(() => {
-        keluar.style.display = 'block';
-    }, 4000);
-}, 3000);
 
-document.addEventListener('click', () => {
-    if (document.documentElement.requestFullscreen) {
-        document.documentElement.requestFullscreen();
+    function closeGift() {
+      document.getElementById("gift").style.display = "none";
     }
-});
-</script>
+  </script>
+
 </body>
 </html>
