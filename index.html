@@ -209,6 +209,87 @@
       font-size: 1em;
     }
 
+    /* Modal untuk pertanyaan */
+    .question-modal {
+      display: none;
+      position: fixed;
+      z-index: 2000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.95);
+      animation: fadeIn 0.3s ease-in;
+    }
+
+    .question-modal.show {
+      display: flex !important;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .question-content {
+      text-align: center;
+      animation: popIn 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      padding: 50px 40px;
+      border-radius: 30px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+      max-width: 600px;
+      width: 90%;
+    }
+
+    .question-content h2 {
+      color: white;
+      font-size: 2.5em;
+      margin-bottom: 40px;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+    }
+
+    .button-group {
+      display: flex;
+      gap: 30px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .yes-btn, .no-btn {
+      padding: 20px 50px;
+      font-size: 1.5em;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+      color: white;
+      position: relative;
+    }
+
+    .yes-btn {
+      background: linear-gradient(135deg, #ff6b9d 0%, #ff1493 100%);
+    }
+
+    .yes-btn:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(255, 107, 157, 0.4);
+    }
+
+    .yes-btn:active {
+      transform: translateY(-2px);
+    }
+
+    .no-btn {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border: 3px solid white;
+    }
+
+    .no-btn:hover {
+      transform: translate(20px, -20px);
+      background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+    }
+
     @media (max-width: 600px) {
       h1 {
         font-size: 2em;
@@ -228,6 +309,27 @@
       .modal img {
         max-width: 95vw;
         max-height: 60vh;
+      }
+
+      .question-content {
+        padding: 30px 20px;
+        border-radius: 20px;
+      }
+
+      .question-content h2 {
+        font-size: 1.8em;
+        margin-bottom: 30px;
+      }
+
+      .button-group {
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .yes-btn, .no-btn {
+        padding: 15px 40px;
+        font-size: 1.2em;
+        width: 100%;
       }
     }
   </style>
@@ -262,10 +364,26 @@
     </div>
   </div>
 
+  <!-- Modal untuk pertanyaan -->
+  <div id="questionModal" class="question-modal">
+    <div class="question-content">
+      <h2>Kamu suka aku? 💕</h2>
+      <div class="button-group">
+        <button class="yes-btn" onclick="goToWhatsApp()">Iya! ✨🤍</button>
+        <button class="no-btn" onclick="moveNoButton()">Tidak</button>
+      </div>
+    </div>
+  </div>
+
   <script>
     function openGift() {
       const modal = document.getElementById("photoModal");
       modal.classList.add("show");
+      
+      // Tampilkan pertanyaan setelah 3 detik
+      setTimeout(() => {
+        showQuestion();
+      }, 3000);
     }
 
     function closeGift() {
@@ -283,6 +401,33 @@
       }
     }
 
+    function showQuestion() {
+      const questionModal = document.getElementById("questionModal");
+      questionModal.classList.add("show");
+    }
+
+    function hideQuestion() {
+      const questionModal = document.getElementById("questionModal");
+      questionModal.classList.remove("show");
+    }
+
+    function goToWhatsApp() {
+      const phoneNumber = "6285183376722";
+      const message = "Iyaah aku suka kamu ✨🤍";
+      const encodedMessage = encodeURIComponent(message);
+      
+      // Arahkan ke WhatsApp
+      window.location.href = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+    }
+
+    function moveNoButton() {
+      const noBtn = document.querySelector('.no-btn');
+      const randomX = Math.random() * 200 - 100;
+      const randomY = Math.random() * 200 - 100;
+      
+      noBtn.style.transform = `translate(${randomX}px, ${randomY}px)`;
+    }
+
     // Tutup modal jika klik di area luar konten
     document.getElementById("photoModal").addEventListener("click", function(e) {
       if (e.target === this) {
@@ -294,6 +439,7 @@
     document.addEventListener("keydown", function(e) {
       if (e.key === "Escape") {
         closeGift();
+        hideQuestion();
       }
     });
   </script>
