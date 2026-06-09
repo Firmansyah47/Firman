@@ -54,6 +54,12 @@
       width: 250px;
       border-radius: 15px;
       margin-bottom: 15px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .gift img:hover {
+      transform: scale(1.1);
     }
 
     .gift button {
@@ -73,7 +79,7 @@
   </div>
 
   <div class="gift" id="gift">
-    <img src="https://ibb.co.com/GQQ2gm21?web_source=router" alt="foto">
+    <img src="hantu.jpg" alt="foto hantu" onclick="enlargeImage(this)">
     <h2>Ini hadiah buat kamu 💖</h2>
     <p>Semoga kamu suka ya 🤭</p>
     <button onclick="closeGift()">Tutup</button>
@@ -86,6 +92,14 @@
 
     function closeGift() {
       document.getElementById("gift").style.display = "none";
+    }
+
+    function enlargeImage(img) {
+      if (img.style.width === "400px") {
+        img.style.width = "250px";
+      } else {
+        img.style.width = "400px";
+      }
     }
   </script>
 
