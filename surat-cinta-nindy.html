@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💌 Surat Cinta Untuk Nindy 💌</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        .love-container {
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+            background: white;
+            border-radius: 25px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            padding: 50px 30px;
+            animation: slideUp 0.8s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            color: #ff1493;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .subtitle {
+            color: #764ba2;
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .letter-box {
+            background: linear-gradient(135deg, #fff0f6 0%, #ffe4f0 100%);
+            border: 3px solid #ff1493;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            min-height: 300px;
+            box-shadow: inset 0 2px 10px rgba(0,0,0,0.05);
+            text-align: left;
+            line-height: 1.8;
+            position: relative;
+        }
+
+        .letter-box::before {
+            content: '✉️';
+            position: absolute;
+            top: -20px;
+            left: 20px;
+            font-size: 2.5em;
+        }
+
+        #loveLetter {
+            color: #333;
+            font-size: 1.1em;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .letter-signature {
+            text-align: right;
+            margin-top: 20px;
+            font-style: italic;
+            color: #764ba2;
+            font-weight: bold;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .edit-btn, .share-btn {
+            padding: 15px 35px;
+            font-size: 1.1em;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            color: white;
+        }
+
+        .edit-btn {
+            background: linear-gradient(135deg, #ff1493 0%, #ff69b4 100%);
+        }
+
+        .edit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 20, 147, 0.4);
+        }
+
+        .share-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .share-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal.show {
+            display: flex !important;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            position: relative;
+            width: 90%;
+            max-width: 500px;
+            max-height: 90vh;
+            overflow-y: auto;
+            animation: popIn 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        @keyframes popIn {
+            from {
+                opacity: 0;
+                transform: scale(0.3) rotateZ(-10deg);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) rotateZ(0);
+            }
+        }
+
+        .close {
+            position: absolute;
+            right: 20px;
+            top: 15px;
+            font-size: 30px;
+            font-weight: bold;
+            color: #ff1493;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .close:hover {
+            transform: rotate(90deg) scale(1.2);
+        }
+
+        .modal-content h2 {
+            color: #764ba2;
+            margin-bottom: 20px;
+        }
+
+        .modal-content label {
+            display: block;
+            color: #333;
+            font-weight: bold;
+            margin-top: 15px;
+            margin-bottom: 5px;
+        }
+
+        .modal-content input[type="text"],
+        .modal-content textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 2px solid #ff1493;
+            border-radius: 10px;
+            font-size: 1em;
+            font-family: inherit;
+            transition: border-color 0.3s ease;
+        }
+
+        .modal-content input[type="text"]:focus,
+        .modal-content textarea:focus {
+            outline: none;
+            border-color: #764ba2;
+            box-shadow: 0 0 10px rgba(255, 20, 147, 0.2);
+        }
+
+        .modal-content textarea {
+            resize: vertical;
+            min-height: 200px;
+        }
+
+        .save-btn {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #ff1493 0%, #ff69b4 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 20, 147, 0.3);
+        }
+
+        .save-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 7px 20px rgba(255, 20, 147, 0.4);
+        }
+
+        /* Floating hearts */
+        .heart {
+            position: fixed;
+            pointer-events: none;
+            font-size: 2em;
+            animation: float 3s ease-in forwards;
+            z-index: 10;
+        }
+
+        @keyframes float {
+            0% {
+                opacity: 1;
+                transform: translateY(0) translateX(0) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-100vh) translateX(100px) scale(0.3);
+            }
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            .love-container {
+                padding: 30px 20px;
+            }
+
+            .letter-box {
+                padding: 20px;
+                min-height: 250px;
+            }
+
+            #loveLetter {
+                font-size: 1em;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            .edit-btn, .share-btn {
+                width: 100%;
+            }
+
+            .modal-content {
+                width: 95%;
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="love-container">
+        <h1>💌 SURAT CINTA UNTUKMU 💌</h1>
+        <p class="subtitle">Untuk orang terkasih, Nindy ✨</p>
+        
+        <div class="letter-box">
+            <div id="loveLetter">Hai sayangku, Nindy...
+
+Aku ingin kamu tahu bahwa setiap hari bersamamu adalah anugerah yang indah. Senyummu membuat hatiku bahagia dan kehadiranmu membuat hidupku berarti.
+
+Aku ingin memberitahumu bahwa aku cinta padamu, apa adanya. Setiap keindahan yang aku lihat pun tidak sebanding dengan indahnya hatimu.
+
+Terima kasih sudah menjadi bagian dari hidupku. Aku berjanji akan selalu ada untukmu, mendampingimu dalam setiap langkah.
+
+Selamanya,</div>
+            <div class="letter-signature">
+                ❤️ Cintamu
+            </div>
+        </div>
+
+        <div class="button-group">
+            <button class="edit-btn" onclick="openModal()">✏️ Edit Surat</button>
+            <button class="share-btn" onclick="shareViaWhatsApp()">📱 Kirim ke WhatsApp</button>
+        </div>
+    </div>
+
+    <!-- Modal Edit -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>✍️ Edit Suratmu</h2>
+            
+            <label>Nama penerima:</label>
+            <input type="text" id="inputName" placeholder="Nama penerima" value="Nindy">
+            
+            <label>Isi surat:</label>
+            <textarea id="inputLetter" placeholder="Tulis surat cinta kamu di sini..."></textarea>
+            
+            <label>Nama pengirim:</label>
+            <input type="text" id="inputSender" placeholder="Nama kamu" value="Cintamu">
+            
+            <button class="save-btn" onclick="saveLetter()">💾 Simpan Surat</button>
+        </div>
+    </div>
+
+    <script>
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.innerHTML = '❤️';
+            heart.className = 'heart';
+            heart.style.left = Math.random() * window.innerWidth + 'px';
+            heart.style.top = window.innerHeight + 'px';
+            document.body.appendChild(heart);
+            
+            setTimeout(() => heart.remove(), 3000);
+        }
+
+        // Buat hati setiap 500ms
+        setInterval(createHeart, 500);
+
+        function openModal() {
+            const letterText = document.getElementById('loveLetter').textContent;
+            const nameMatch = letterText.match(/Untuk orang terkasih, (\w+)/);
+            document.getElementById('inputName').value = nameMatch ? nameMatch[1] : 'Nindy';
+            document.getElementById('inputLetter').value = letterText;
+            document.getElementById('modal').classList.add('show');
+        }
+
+        function closeModal() {
+            document.getElementById('modal').classList.remove('show');
+        }
+
+        function saveLetter() {
+            const name = document.getElementById('inputName').value || 'Sayangku';
+            const letterContent = document.getElementById('inputLetter').value || '';
+            const sender = document.getElementById('inputSender').value || 'Cintamu';
+            
+            document.getElementById('loveLetter').textContent = letterContent;
+            document.querySelector('.letter-signature').innerHTML = `❤️ ${sender}`;
+            closeModal();
+            alert('✨ Surat berhasil disimpan! ✨');
+        }
+
+        function shareViaWhatsApp() {
+            const letterText = document.getElementById('loveLetter').textContent;
+            const sender = document.querySelector('.letter-signature').textContent.replace('❤️', '').trim();
+            const fullMessage = `💌 *SURAT CINTA UNTUKMU* 💌\n\n${letterText}\n\n${sender}`;
+            
+            const encodedMessage = encodeURIComponent(fullMessage);
+            const whatsappNumber = '628xxxxxxxxxx'; // Ganti dengan nomor WhatsApp kamu
+            window.open(`https://wa.me/${whatsappNumber}?text=${encodedMessage}`, '_blank');
+        }
+
+        // Tutup modal jika klik di luar
+        window.onclick = function(event) {
+            const modal = document.getElementById('modal');
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+    </script>
+
+</body>
+</html>
