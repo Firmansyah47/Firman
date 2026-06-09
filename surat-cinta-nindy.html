@@ -316,17 +316,17 @@
         <p class="subtitle">Untuk orang terkasih, Nindy ✨</p>
         
         <div class="letter-box">
-            <div id="loveLetter">Hai sayangku, Nindy...
+            <div id="loveLetter">Hai Nindy sayang...
 
-Aku ingin kamu tahu bahwa setiap hari bersamamu adalah anugerah yang indah. Senyummu membuat hatiku bahagia dan kehadiranmu membuat hidupku berarti.
+Aku ingin kamu tahu bahwa setiap saat bersamamu adalah berkah yang luar biasa. Senyummu membuat hari-hariku berwarna, dan kehadiranmu membuat hidupku bermakna.
 
-Aku ingin memberitahumu bahwa aku cinta padamu, apa adanya. Setiap keindahan yang aku lihat pun tidak sebanding dengan indahnya hatimu.
+Nindy, aku ingin mengatakan dengan sepenuh hati, aku cinta padamu. Aku jatuh cinta dengan cara kamu menjadi diri sendiri, dengan segala keindahan yang ada dalam diri kamu.
 
-Terima kasih sudah menjadi bagian dari hidupku. Aku berjanji akan selalu ada untukmu, mendampingimu dalam setiap langkah.
+Terima kasih telah memilih untuk bersama aku. Aku berjanji akan selalu ada untukmu, menemani setiap langkah perjalanan hidup kita bersama.
 
-Selamanya,</div>
+Selamanya milikmu,</div>
             <div class="letter-signature">
-                ❤️ Cintamu
+                ❤️ Firmansyah
             </div>
         </div>
 
@@ -349,7 +349,7 @@ Selamanya,</div>
             <textarea id="inputLetter" placeholder="Tulis surat cinta kamu di sini..."></textarea>
             
             <label>Nama pengirim:</label>
-            <input type="text" id="inputSender" placeholder="Nama kamu" value="Cintamu">
+            <input type="text" id="inputSender" placeholder="Nama kamu" value="Firmansyah">
             
             <button class="save-btn" onclick="saveLetter()">💾 Simpan Surat</button>
         </div>
@@ -372,9 +372,9 @@ Selamanya,</div>
 
         function openModal() {
             const letterText = document.getElementById('loveLetter').textContent;
-            const nameMatch = letterText.match(/Untuk orang terkasih, (\w+)/);
-            document.getElementById('inputName').value = nameMatch ? nameMatch[1] : 'Nindy';
+            const senderText = document.querySelector('.letter-signature').textContent.replace('❤️', '').trim();
             document.getElementById('inputLetter').value = letterText;
+            document.getElementById('inputSender').value = senderText;
             document.getElementById('modal').classList.add('show');
         }
 
@@ -383,9 +383,8 @@ Selamanya,</div>
         }
 
         function saveLetter() {
-            const name = document.getElementById('inputName').value || 'Sayangku';
             const letterContent = document.getElementById('inputLetter').value || '';
-            const sender = document.getElementById('inputSender').value || 'Cintamu';
+            const sender = document.getElementById('inputSender').value || 'Firmansyah';
             
             document.getElementById('loveLetter').textContent = letterContent;
             document.querySelector('.letter-signature').innerHTML = `❤️ ${sender}`;
@@ -399,7 +398,7 @@ Selamanya,</div>
             const fullMessage = `💌 *SURAT CINTA UNTUKMU* 💌\n\n${letterText}\n\n${sender}`;
             
             const encodedMessage = encodeURIComponent(fullMessage);
-            const whatsappNumber = '628xxxxxxxxxx'; // Ganti dengan nomor WhatsApp kamu
+            const whatsappNumber = '6285183376722'; // Nomor WhatsApp Firmansyah
             window.open(`https://wa.me/${whatsappNumber}?text=${encodedMessage}`, '_blank');
         }
 
