@@ -256,7 +256,6 @@
             box-shadow: 0 7px 20px rgba(255, 20, 147, 0.4);
         }
 
-        /* Floating hearts */
         .heart {
             position: fixed;
             pointer-events: none;
@@ -336,7 +335,6 @@ Selamanya milikmu,</div>
         </div>
     </div>
 
-    <!-- Modal Edit -->
     <div id="modal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal()">&times;</span>
@@ -367,7 +365,6 @@ Selamanya milikmu,</div>
             setTimeout(() => heart.remove(), 3000);
         }
 
-        // Buat hati setiap 500ms
         setInterval(createHeart, 500);
 
         function openModal() {
@@ -398,11 +395,10 @@ Selamanya milikmu,</div>
             const fullMessage = `💌 *SURAT CINTA UNTUKMU* 💌\n\n${letterText}\n\n${sender}`;
             
             const encodedMessage = encodeURIComponent(fullMessage);
-            const whatsappNumber = '6285183376722'; // Nomor WhatsApp Firmansyah
+            const whatsappNumber = '6285183376722';
             window.open(`https://wa.me/${whatsappNumber}?text=${encodedMessage}`, '_blank');
         }
 
-        // Tutup modal jika klik di luar
         window.onclick = function(event) {
             const modal = document.getElementById('modal');
             if (event.target == modal) {

@@ -209,7 +209,6 @@
       font-size: 1em;
     }
 
-    /* Modal untuk pertanyaan */
     .question-modal {
       display: none;
       position: fixed;
@@ -351,7 +350,6 @@
     <p class="instruction">👆 Tekan kotak hadiah untuk melihat kejutan!</p>
   </div>
 
-  <!-- Modal untuk menampilkan foto -->
   <div id="photoModal" class="modal">
     <span class="close-btn" onclick="closeGift()">&times;</span>
     <div class="modal-content">
@@ -364,7 +362,6 @@
     </div>
   </div>
 
-  <!-- Modal untuk pertanyaan -->
   <div id="questionModal" class="question-modal">
     <div class="question-content">
       <h2>Kamu suka aku? 💕</h2>
@@ -380,7 +377,6 @@
       const modal = document.getElementById("photoModal");
       modal.classList.add("show");
       
-      // Tampilkan pertanyaan setelah 3 detik
       setTimeout(() => {
         showQuestion();
       }, 3000);
@@ -389,7 +385,6 @@
     function closeGift() {
       const modal = document.getElementById("photoModal");
       modal.classList.remove("show");
-      // Reset ukuran gambar
       document.getElementById("modalImage").style.maxHeight = "70vh";
     }
 
@@ -416,7 +411,6 @@
       const message = "Iyaah aku suka kamu ✨🤍";
       const encodedMessage = encodeURIComponent(message);
       
-      // Arahkan ke WhatsApp
       window.location.href = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
     }
 
@@ -428,14 +422,12 @@
       noBtn.style.transform = `translate(${randomX}px, ${randomY}px)`;
     }
 
-    // Tutup modal jika klik di area luar konten
     document.getElementById("photoModal").addEventListener("click", function(e) {
       if (e.target === this) {
         closeGift();
       }
     });
 
-    // Tutup modal dengan tombol Escape
     document.addEventListener("keydown", function(e) {
       if (e.key === "Escape") {
         closeGift();
