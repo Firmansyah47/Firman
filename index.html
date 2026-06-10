@@ -1,199 +1,115 @@
-‎<!DOCTYPE html>
-‎<html lang="id">
-‎<head>
-‎<meta charset="UTF-8">
-‎<meta name="viewport" content="width=device-width, initial-scale=1.0">
-‎<title>MBG rasa durian 🤤</title>
-‎
-‎<style>
-‎*{
-‎    margin:0;
-‎    padding:0;
-‎    box-sizing:border-box;
-‎    font-family:Arial,sans-serif;
-‎}
-‎
-‎body{
-‎    background:linear-gradient(135deg,#ff9ecf,#ffc7e3);
-‎    min-height:100vh;
-‎    display:flex;
-‎    justify-content:center;
-‎    align-items:center;
-‎    overflow:hidden;
-‎}
-‎
-‎.container{
-‎    text-align:center;
-‎    padding:20px;
-‎}
-‎
-‎.envelope{
-‎    font-size:120px;
-‎    cursor:pointer;
-‎    animation:lompat 1.5s infinite;
-‎}
-‎
-‎@keyframes lompat{
-‎    50%{transform:translateY(-10px);}
-‎}
-‎
-‎.surat{
-‎    display:none;
-‎    background:white;
-‎    padding:25px;
-‎    border-radius:20px;
-‎    max-width:500px;
-‎    box-shadow:0 10px 30px rgba(0,0,0,.15);
-‎}
-‎
-‎h1{
-‎    color:#ff4f9f;
-‎    margin-bottom:15px;
-‎}
-‎
-‎p{
-‎    color:#444;
-‎    line-height:1.6;
-‎    margin-bottom:20px;
-‎}
-‎
-‎.btn{
-‎    border:none;
-‎    padding:12px 24px;
-‎    border-radius:15px;
-‎    cursor:pointer;
-‎    font-size:18px;
-‎}
-‎
-‎#yes{
-‎    background:#ff4f9f;
-‎    color:white;
-‎}
-‎
-‎#no{
-‎    background:white;
-‎    color:#ff4f9f;
-‎    border:2px solid #ff4f9f;
-‎    position:fixed;
-‎}
-‎
-‎#success{
-‎    display:none;
-‎    margin-top:20px;
-‎}
-‎
-‎#waBtn{
-‎    background:#25D366;
-‎    color:white;
-‎}
-‎</style>
-‎</head>
-‎<body>
-‎
-‎<div class="container">
-‎
-‎<div class="envelope" onclick="bukaSurat()">
-‎💌
-‎</div>
-‎
-‎<div class="surat" id="surat">
-‎
-‎<h1>Hai Nindy ❤️</h1>
-‎
-‎<p>
-‎Aku cuma mau bilang kalau aku seneng banget bisa kenal kamu.
-‎Makasih udah hadir dan jadi salah satu orang yang bikin hari-hariku lebih berwarna. ✨
-‎</p>
-‎
-‎<p>
-‎Jadi...
-‎</p>
-‎
-‎<h2 style="color:#ff4f9f;margin-bottom:20px;">
-‎Kamu mau jadi pacarku? 💕
-‎</h2>
-‎
-‎<button class="btn" id="yes" onclick="terima()">
-‎Iyaaa 💕
-‎</button>
-‎
-‎<button class="btn" id="no">
-‎Malas🧢
-‎</button>
-‎
-‎<div id="success">
-‎<h2>YEEEY ❤️✨</h2>
-‎<p>Sekarang pencet tombol di bawah ya 😆</p>
-‎
-‎<button class="btn" id="waBtn" onclick="wa()">
-‎Lanjut ke WhatsApp 💌
-‎</button>
-‎</div>
-‎
-‎</div>
-‎
-‎</div>
-‎
-‎<script>
-‎
-‎const noBtn = document.getElementById("no");
-‎
-‎function bukaSurat(){
-‎    document.querySelector(".envelope").style.display="none";
-‎    document.getElementById("surat").style.display="block";
-‎}
-‎
-‎function terima(){
-‎    document.getElementById("success").style.display="block";
-‎
-‎    for(let i=0;i<30;i++){
-‎        let heart=document.createElement("div");
-‎
-‎        heart.innerHTML="❤️";
-‎        heart.style.position="fixed";
-‎        heart.style.left=Math.random()*100+"vw";
-‎        heart.style.top="-20px";
-‎        heart.style.fontSize=(20+Math.random()*30)+"px";
-‎
-‎        document.body.appendChild(heart);
-‎
-‎        let fall=setInterval(()=>{
-‎            heart.style.top=(parseFloat(heart.style.top)+5)+"px";
-‎
-‎            if(parseFloat(heart.style.top)>window.innerHeight){
-‎                clearInterval(fall);
-‎                heart.remove();
-‎            }
-‎        },20);
-‎    }
-‎}
-‎
-‎function wa(){
-‎    const nomor="6285183376722";
-‎
-‎    const pesan=encodeURIComponent(
-‎        "Iyaa aku suka banget sama kamu, kamu mau ga jadi pacar aku💕❤✨"
-‎    );
-‎
-‎    window.open(
-‎        `https://api.whatsapp.com/send?phone=${nomor}&text=${pesan}`,
-‎        "_blank"
-‎    );
-‎}
-‎
-‎function kabur(){
-‎    const x=Math.random()*(window.innerWidth-120);
-‎    const y=Math.random()*(window.innerHeight-60);
-‎
-‎    noBtn.style.left=x+"px";
-‎    noBtn.style.top=y+"px";
-‎}
-‎
-‎noBtn.addEventListener("mouseover",kabur);
-‎noBtn.addEventListener("touchstart",kabur);
-‎noBtn.addEventListener("click",kabur);
-‎
-‎</script>
-‎
-‎</body>
-‎</html>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Firman's Links</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#ffffff,#f0f0f0);
+    overflow:hidden;
+}
+
+.container{
+    text-align:center;
+    width:90%;
+    max-width:400px;
+}
+
+h1{
+    color:#222;
+    margin-bottom:10px;
+    font-size:38px;
+}
+
+p{
+    color:#666;
+    margin-bottom:35px;
+}
+
+.btn{
+    display:block;
+    text-decoration:none;
+    padding:18px;
+    margin:15px 0;
+    border-radius:15px;
+    color:white;
+    font-size:18px;
+    font-weight:bold;
+    transition:0.3s;
+}
+
+.btn:hover{
+    transform:translateY(-5px);
+}
+
+.ig{
+    background:linear-gradient(45deg,#f58529,#dd2a7b,#8134af,#515bd4);
+}
+
+.tt{
+    background:#000;
+}
+
+.circle{
+    position:absolute;
+    border-radius:50%;
+    opacity:0.1;
+}
+
+.c1{
+    width:250px;
+    height:250px;
+    background:#000;
+    top:-50px;
+    left:-50px;
+}
+
+.c2{
+    width:300px;
+    height:300px;
+    background:#555;
+    bottom:-100px;
+    right:-100px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="circle c1"></div>
+<div class="circle c2"></div>
+
+<div class="container">
+
+    <h1>Welcome 👋</h1>
+    <p>you can go⬇️⬇️</p>
+
+    <a class="btn ig"
+    href="https://www.instagram.com/firmann_47?igsh=MTk4bG03a3JmZmpuNA=="
+    target="_blank">
+    📸 GO INSTAGRAM
+    </a>
+
+    <a class="btn tt"
+    href="https://www.tiktok.com/@firman_1447?_r=1&_t=ZS-975EdQIUgqO"
+    target="_blank">
+    🎵 GO TIKTOK
+    </a>
+
+</div>
+
+</body>
+</html>
