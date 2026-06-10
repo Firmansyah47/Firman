@@ -14,18 +14,30 @@
 }
 
 body{
-    height:100vh;
+    min-height:100vh;
     display:flex;
     justify-content:center;
     align-items:center;
     background:linear-gradient(135deg,#ffffff,#f0f0f0);
     overflow:hidden;
+    position:relative;
 }
 
 .container{
     text-align:center;
     width:90%;
     max-width:400px;
+    z-index:10;
+}
+
+.profile{
+    width:180px;
+    height:180px;
+    border-radius:50%;
+    object-fit:cover;
+    border:6px solid white;
+    box-shadow:0 10px 30px rgba(0,0,0,0.2);
+    margin-bottom:20px;
 }
 
 h1{
@@ -37,6 +49,7 @@ h1{
 p{
     color:#666;
     margin-bottom:35px;
+    font-size:20px;
 }
 
 .btn{
@@ -85,15 +98,6 @@ p{
     right:-100px;
 }
 </style>
-    .profile{
-    width:180px;
-    height:180px;
-    border-radius:50%;
-    object-fit:cover;
-    border:6px solid white;
-    box-shadow:0 10px 30px rgba(0,0,0,0.2);
-    margin-bottom:20px;
-}
 </head>
 
 <body>
@@ -103,10 +107,10 @@ p{
 
 <div class="container">
 
-    ‎<img src="<img src="https://raw.githubusercontent.com/Firmansyah47/Firman/main/Elainaa.jpg" class="profile">" class="profile">
+    <img src="https://raw.githubusercontent.com/Firmansyah47/Firman/main/Elainaa.jpg" class="profile">
 
-    <h1>Welcome 👋</h1>
-    <p>you can go⬇️⬇️</p>
+    <h1>Welcome My Profile👋</h1>
+    <p>Choice </p>
 
     <a class="btn ig"
     href="https://www.instagram.com/firmann_47?igsh=MTk4bG03a3JmZmpuNA=="
